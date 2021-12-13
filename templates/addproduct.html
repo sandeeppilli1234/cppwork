@@ -1,0 +1,80 @@
+<!-- Add products form -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename ='style.css') }}">
+    <title>addproduct</title>
+</head>
+
+<body>
+    <div class="cont">
+        <div class="demo">
+            <div class="login">
+                <div class="login__check"></div>
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <div class="login__form">
+                         <div class="login__row">
+                            <input type="text" class="login__input name" placeholder="Select a department" >
+                             <select id="dpt" name="Department" >
+                                {% if product %}
+                                <option value="Electronics"{% if product.Department=='Electronics' %} selected="selected"{% endif %}>Electronics</option>
+                                <option value="Men Fashion"{% if product.Department=='Men Fashion' %} selected="selected"{% endif %}>Men Fashion</option>
+                                <option value="Women Fashion"{% if product.Department=='Women Fashion' %} selected="selected"{% endif %}>Women Fashion</option>
+                                <option value="Furniture"{% if product.Department=='Furniture' %} selected="selected"{% endif %}>Furniture</option>
+                                {% else %}
+                                <option value="Electronics">Electronics</option>
+                                <option value="Men Fashion">Men Fashion</option>
+                                <option value="Women Fashion">Women Fashion</option>
+                                <option value="Furniture">Furniture</option>
+                                {% endif %}
+                              </select>
+                        </div>
+                        <div class="login__row">
+                            <input type="text" class="login__input name" placeholder="Product Type/Name"
+                                name="product_type" value="{{product.product_type}}"  />
+                        </div>
+                        <div class="login__row">
+                            <input type="number" class="login__input pass" placeholder="Price of Product in Euros"
+                                name="Product_price" value="{{product.Product_price}}" />
+                        </div>
+                        <div class="login__row">
+
+                            <input type="text" class="login__input pass" placeholder="Product Deatils" name="Prod_spec" value="{{product.Prod_spec}}" 
+                                 />
+                        </div>
+                        <div class="login__row">
+
+                            <input type="text" class="login__input pass" placeholder="Seller Name" name="Seller_name" value="{{product.Seller_name}}" 
+                                 />
+                        </div>
+                        <div class="login__row">
+
+                            <input type="email" class="login__input pass" placeholder="Seller's Email ID"
+                                 name="Seller_Email" value="{{product.Seller_Email}}"  />
+                        </div>
+                        <div class="login__row">
+
+                            <input type="number" class="login__input pass" placeholder="Seller's Contact Number"
+                                name="Contact_num" value="{{product.Contact_num}}"  />
+                        </div>
+                        
+                        <div class="login__row">
+                            <input type="file" class="login__input pass" placeholder="Product images" name="file" id="image" accept="image/x-png,image/gif,image/jpeg"/>
+                        </div>
+                        <input type="submit" class="login__submit" value="Post Your Ad" />
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
